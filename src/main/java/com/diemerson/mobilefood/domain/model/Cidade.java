@@ -5,6 +5,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
@@ -15,10 +18,12 @@ import lombok.Getter;
 public class Cidade {
 	
 	@Id
+	@JsonIgnore
 	private Long id;
 	
-	@ManyToOne
-	private Estado estado;
-	
 	private String nome;
+
+	@ManyToOne
+	@JsonIgnoreProperties("nome")
+	private Estado estado;
 }

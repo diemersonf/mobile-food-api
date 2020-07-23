@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,7 +37,7 @@ public class Restaurante {
 	private BigDecimal taxaFrete;
 	
 	@Getter @Setter
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "restaurante_cozinha", 
 		joinColumns = {@JoinColumn(name="restaurante_id")},
 		inverseJoinColumns = {@JoinColumn(name="cozinha_id")})

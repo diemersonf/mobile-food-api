@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -19,7 +20,7 @@ public class Grupo {
 	private String nome;
 	private String descricao;
 	
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "grupo_permissao",
 		joinColumns = {@JoinColumn(name="grupo_nome")},
 		inverseJoinColumns = {@JoinColumn(name="permissao_nome")})

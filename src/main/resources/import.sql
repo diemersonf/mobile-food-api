@@ -58,6 +58,3 @@ insert into grupo_permissao values ("Funcionario", "Cadastro");
 insert into grupo_permissao values ("Diretor", "Cadastro");
 insert into grupo_permissao values ("Diretor", "Financeiro");
 insert into grupo_permissao values ("Diretor", "Vendas");
-
-
-
