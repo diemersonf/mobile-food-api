@@ -21,10 +21,10 @@ public class RestauranteConsultaMain {
 		List<Restaurante> todosRestauranteCadastrados = restaurantes.buscarTodas();
 		
 		for (Restaurante restaurante : todosRestauranteCadastrados) {
-			System.out.printf("\nRestaurantes cadastradas: Nome: %s Taxa Entrega: %.2f \n"
+			System.out.printf("\nRestaurantes cadastradas: Nome: %s Taxa Entrega: %.2f %s \n"
 					,restaurante.getNome()
-					,restaurante.getTaxaFrete());
-//					,restaurante.getCozinhas();
+					,restaurante.getTaxaFrete()
+					,restaurante.getCozinhas());
 		}
 	}
 }
