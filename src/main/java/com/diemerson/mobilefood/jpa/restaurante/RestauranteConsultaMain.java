@@ -18,7 +18,7 @@ public class RestauranteConsultaMain {
 			
 		RestauranteRepository restaurantes = applicationContext.getBean(RestauranteRepository.class);
 		
-		List<Restaurante> todosRestauranteCadastrados = restaurantes.buscarTodas();
+		List<Restaurante> todosRestauranteCadastrados = restaurantes.buscarTodos();
 		
 		for (Restaurante restaurante : todosRestauranteCadastrados) {
 			System.out.printf("\nRestaurantes cadastradas: Nome: %s Taxa Entrega: %.2f %s \n"

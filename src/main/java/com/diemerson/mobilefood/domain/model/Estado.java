@@ -1,5 +1,6 @@
 package com.diemerson.mobilefood.domain.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -14,5 +15,7 @@ import lombok.Getter;
 public class Estado {
 	@Id
 	private String sigla;
+	
+	@Column(nullable = false)
 	private String Nome;
 }

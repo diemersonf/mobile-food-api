@@ -5,7 +5,6 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
 
 import com.diemerson.mobilefood.MobileFoodApiApplication;
-import com.diemerson.mobilefood.domain.model.Cozinha;
 import com.diemerson.mobilefood.domain.repository.CozinhaRepository;
 
 public class CozinhaRemoveMain {
@@ -15,14 +14,11 @@ public class CozinhaRemoveMain {
 				.run(args);
 			
 		CozinhaRepository cozinhas = applicationContext.getBean(CozinhaRepository.class);
-		
-		Cozinha cozinha = new Cozinha();
-		cozinha = cozinhas.buscarPorId(3L);
-		 
-		System.out.printf("Nome da Cozinha antes da remoção: %s \n\n", cozinha.getNome());
+
+		System.out.printf("Nome da Cozinha antes da remoção: %s \n\n", cozinhas.buscarPorId(3L).getNome());
 
 		try {
-			cozinhas.removerBD(cozinha);
+			cozinhas.removerBD(3L);
 			System.out.println("Cozinha removida com sucesso!!!");
 		}catch (IllegalArgumentException e) {
 			System.out.println("Cozinha não foi removida. " + e);

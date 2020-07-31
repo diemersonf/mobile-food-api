@@ -8,7 +8,7 @@ public interface CozinhaRepository {
 	List<Cozinha> buscarTodas();
 	Cozinha buscarPorId(Long id);
 	Cozinha adicionarBD(Cozinha cozinha);
-	Cozinha atualizarBD(Cozinha cozinha);
-	void removerBD(Cozinha cozinha);
+	Cozinha atualizarBD(Long cozinhaId, Cozinha cozinha);
+	void removerBD(Long id);
 	Cozinha buscarPorNome(String nome);
 }
