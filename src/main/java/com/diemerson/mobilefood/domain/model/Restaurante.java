@@ -45,10 +45,10 @@ public class Restaurante {
 	private List<Cozinha> cozinhas;
 	
 	@Getter @Setter
-	private Boolean ativo = false;
+	private Boolean ativo;
 	
 	@Getter @Setter
-	private Boolean aberto = false;
+	private Boolean aberto;
 	
 	@Getter
 	private Date dataCadastro = new Date();

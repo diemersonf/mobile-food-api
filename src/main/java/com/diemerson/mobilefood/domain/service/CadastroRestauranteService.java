@@ -7,29 +7,33 @@ import org.springframework.stereotype.Service;
 
 import com.diemerson.mobilefood.domain.exception.EntidadeNaoEncontradaException;
 import com.diemerson.mobilefood.domain.model.Restaurante;
-import com.diemerson.mobilefood.infrastructure.repository.RestauranteRepositoryImpl;
+import com.diemerson.mobilefood.domain.repository.RestauranteRepository;
 
 @Service
 public class CadastroRestauranteService {
 
 	@Autowired
-	RestauranteRepositoryImpl repository;
+	RestauranteRepository restauranteRepository;
 	
 	public List<Restaurante> listarTodos(){
-		return repository.buscarTodos();
+		return restauranteRepository.buscarTodos();
 	}
 	
 	public Restaurante buscarPorId(Long restauranteId) {
 		Restaurante restaurante = new Restaurante();
-		restaurante = repository.buscarPorId(restauranteId);
+		restaurante = restauranteRepository.buscarPorId(restauranteId);
 		if (restaurante == null) {
 			throw new EntidadeNaoEncontradaException("Restaurante %d não cadastrado.");
 		}
 		return restaurante;
 	}
 	
-	public Restaurante adicionar(Restaurante restaurante) {
-		return repository.adicionarBD(restaurante);
+	public Restaurante adicionar(Restaurante restaurante) {	
+		return restauranteRepository.adicionarBD(restaurante);
+	}
+	
+	public Restaurante atualizar(Long restauranteId, Restaurante restaurante) {
+		return restauranteRepository.atualizarBD(restauranteId, restaurante);
 	}
 
 }

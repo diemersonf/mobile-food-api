@@ -59,14 +59,14 @@ public class CozinhaRepositoryImpl implements CozinhaRepository{
 	@Override
 	@Transactional
 	public Cozinha atualizarBD(Long cozinhaId, Cozinha cozinha) {
-		Cozinha cozinhaAtual = new Cozinha();
-		cozinhaAtual = this.buscarPorId(cozinhaId);
+		Cozinha cozinhaBd = new Cozinha();
+		cozinhaBd = this.buscarPorId(cozinhaId);
 		
-		if(cozinhaAtual == null) {
+		if(cozinhaBd == null) {
 			throw new EmptyResultDataAccessException(1);
 		}
 		
-		BeanUtils.copyProperties(cozinha, cozinhaAtual);
-		return manager.merge(cozinhaAtual);
+		BeanUtils.copyProperties(cozinha, cozinhaBd);
+		return manager.merge(cozinhaBd);
 	}
 }

@@ -9,6 +9,6 @@ public interface RestauranteRepository {
 	Restaurante buscarPorId(Long id);
 	List<Restaurante> buscarPorNome(String nome);
 	Restaurante adicionarBD(Restaurante restaurante);
-	Restaurante atualizarBD(Restaurante restaurante);
-	void removerBD(Restaurante restaurante);
+	Restaurante atualizarBD(Long restauranteId, Restaurante restaurante);
+	void removerBD(Long restauranteId);
 }
