@@ -1,5 +1,6 @@
 package com.diemerson.mobilefood.domain.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -21,6 +22,7 @@ public class Cidade {
 	@JsonIgnore
 	private Long id;
 	
+	@Column(nullable = false)
 	private String nome;
 
 	@ManyToOne

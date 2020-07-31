@@ -1,5 +1,6 @@
 package com.diemerson.mobilefood.domain.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,5 +21,6 @@ public class FormaPagamento {
 	private Long id;
 	
 	@Getter @Setter
+	@Column(nullable = false)
 	private String nome;
 }

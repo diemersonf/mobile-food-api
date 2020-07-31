@@ -30,11 +30,12 @@ public class Restaurante {
 	private Long id;
 	
 	@Getter @Setter
+	@Column(nullable = false)
 	private String nome;
 	
 	@Getter @Setter
 	@Column(name = "taxa_frete")
-	private BigDecimal taxaFrete;
+	private BigDecimal taxaFrete = new BigDecimal(0.00);
 	
 	@Getter @Setter
 	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
