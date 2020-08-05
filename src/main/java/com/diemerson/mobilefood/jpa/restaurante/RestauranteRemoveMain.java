@@ -21,7 +21,7 @@ public class RestauranteRemoveMain {
 		
 		System.out.printf("Restaurante antes da remoção: Nome: %s Taxa: %.2f ", restaurante.getNome(), restaurante.getTaxaFrete());
 		
-		restaurantes.removerBD(restaurante);
+		restaurantes.removerBD(restaurante.getId());
 
 	}
 }
