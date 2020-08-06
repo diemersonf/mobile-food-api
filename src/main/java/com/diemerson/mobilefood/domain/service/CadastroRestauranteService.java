@@ -3,6 +3,7 @@ package com.diemerson.mobilefood.domain.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.diemerson.mobilefood.domain.exception.EntidadeNaoEncontradaException;
@@ -34,6 +35,15 @@ public class CadastroRestauranteService {
 	
 	public Restaurante atualizar(Long restauranteId, Restaurante restaurante) {
 		return restauranteRepository.atualizarBD(restauranteId, restaurante);
+	}
+	
+	public void remover(Long restauranteId) {
+		try {
+			restauranteRepository.removerBD(restauranteId);
+		} catch (EmptyResultDataAccessException e) {
+			throw new EntidadeNaoEncontradaException(
+					String.format("Restaurante com ID %d não encontrado.", restauranteId));
+		}
 	}
 
 }
