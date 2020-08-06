@@ -7,6 +7,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.diemerson.mobilefood.domain.exception.AtributoNuloException;
 import com.diemerson.mobilefood.domain.exception.EntidadeEmUsoException;
 import com.diemerson.mobilefood.domain.exception.EntidadeNaoEncontradaException;
 import com.diemerson.mobilefood.domain.model.Cozinha;
@@ -26,6 +27,17 @@ public class CadastroCozinhaService {
 	}
 	
 	public Cozinha buscar(Long id){
+		
+		if(id == null) {
+			throw new AtributoNuloException("Id da Cozinha não pode ser nulo.");
+		}
+		
+		Cozinha cozinha = cozinhaRepository.buscarPorId(id);
+		
+		if(cozinha != null) {
+			throw new EntidadeNaoEncontradaException(String.format("Cozinha com id %d não foi encontradas.", id));
+		} 
+		
 		return cozinhaRepository.buscarPorId(id);
 	}
 	

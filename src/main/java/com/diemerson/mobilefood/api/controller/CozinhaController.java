@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.diemerson.mobilefood.domain.exception.AtributoNuloException;
 import com.diemerson.mobilefood.domain.exception.EntidadeEmUsoException;
 import com.diemerson.mobilefood.domain.exception.EntidadeNaoEncontradaException;
 import com.diemerson.mobilefood.domain.model.Cozinha;
@@ -39,14 +40,19 @@ public class CozinhaController {
 	}
 	
 	@GetMapping(value = "/{cozinhaId}")
-	public ResponseEntity<Cozinha> buscar(@PathVariable Long cozinhaId){	
-		Cozinha cozinha = cadastroCozinhaService.buscar(cozinhaId);
-	
-		if(cozinha != null) {
-			return ResponseEntity.ok(cozinha);
-		} 
+	public ResponseEntity<?> buscar(@PathVariable Long cozinhaId){	
+		Cozinha cozinha = new Cozinha();
 		
-		return ResponseEntity.notFound().build();
+		try {
+			cozinha = cadastroCozinhaService.buscar(cozinhaId);
+			return ResponseEntity.ok(cozinha);
+		} catch (AtributoNuloException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		} catch (EntidadeNaoEncontradaException e) {
+			return ResponseEntity.notFound().build();
+		}
+
+		
 	}
 	
 	@PutMapping(value = "/{cozinhaId}")

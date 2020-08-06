@@ -41,7 +41,7 @@ public class GrupoRepositoryImpl implements GrupoRepository {
 	@Override
 	@Transactional
 	public Grupo atualizarBD(Grupo grupo) {
-		return manager.merge(grupo);
+		return this.adicionarBD(grupo);
 	}
 
 	@Override

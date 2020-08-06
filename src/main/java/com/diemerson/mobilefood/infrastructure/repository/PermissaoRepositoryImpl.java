@@ -39,7 +39,7 @@ public class PermissaoRepositoryImpl implements PermissaoRepository {
 	@Override
 	@Transactional
 	public Permissao atualizarBD(Permissao permissao) {
-		return manager.merge(permissao);
+		return this.adicionarBD(permissao);
 	}
 
 	@Override

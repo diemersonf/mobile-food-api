@@ -52,6 +52,6 @@ public class EnderecoRepositoryImpl implements EnderecoRepository{
 	@Override
 	@Transactional
 	public Endereco atualizarBD(Endereco endereco) {
-		return manager.merge(endereco);
+		return this.adicionarBD(endereco);
 	}
 }

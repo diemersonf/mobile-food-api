@@ -34,7 +34,7 @@ public class EstadoController {
 			estado = cadastroEstadoService.buscarPorSigla(estadoSigla);
 			return ResponseEntity.ok().body(estado);
 		} catch (AtributoNuloException e) {
-			return ResponseEntity.badRequest().body(e);
+			return ResponseEntity.badRequest().body(e.getMessage());
 		} catch (EntidadeNaoEncontradaException e) {
 			return ResponseEntity.notFound().build();
 		}

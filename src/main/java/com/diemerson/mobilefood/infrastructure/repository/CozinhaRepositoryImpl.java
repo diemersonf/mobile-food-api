@@ -67,6 +67,6 @@ public class CozinhaRepositoryImpl implements CozinhaRepository{
 		}
 		
 		BeanUtils.copyProperties(cozinha, cozinhaBd);
-		return manager.merge(cozinhaBd);
+		return this.adicionarBD(cozinhaBd);
 	}
 }

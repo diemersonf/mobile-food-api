@@ -42,7 +42,7 @@ public class CidadeController {
 				
 			return ResponseEntity.ok(cidade);
 		} catch (EntidadeNaoEncontradaException e) {
-			return ResponseEntity.badRequest().body(e);
+			return ResponseEntity.badRequest().body(e.getMessage());
 		}catch (NoResultException e) {
 			return ResponseEntity.noContent().build();
 		}

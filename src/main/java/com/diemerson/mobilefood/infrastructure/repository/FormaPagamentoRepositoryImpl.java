@@ -50,6 +50,6 @@ public class FormaPagamentoRepositoryImpl implements FormaPagamentoRepository{
 	@Override
 	@Transactional
 	public FormaPagamento atualizarBD(FormaPagamento formaPagamento) {
-		return manager.merge(formaPagamento);
+		return this.adicionarBD(formaPagamento);
 	}
 }
