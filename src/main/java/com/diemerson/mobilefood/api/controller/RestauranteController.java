@@ -32,7 +32,7 @@ public class RestauranteController {
 		return cadastroRestauranteService.listarTodos();				
 	}
 	
-	@GetMapping("{restauranteId}")
+	@GetMapping("/{restauranteId}")
 	public ResponseEntity<Restaurante> buscarPorId(@PathVariable Long restauranteId){
 		try {
 			return ResponseEntity.ok(cadastroRestauranteService.buscarPorId(restauranteId));
@@ -53,7 +53,7 @@ public class RestauranteController {
 		}
 	}
 	
-	@PutMapping(value = "{restauranteId}")
+	@PutMapping(value = "/{restauranteId}")
 	public ResponseEntity<?> atualizar(@PathVariable Long restauranteId, @RequestBody Restaurante restaurante){
 		try {
 			restaurante = cadastroRestauranteService.atualizar(restauranteId, restaurante);
@@ -68,7 +68,7 @@ public class RestauranteController {
 		}
 	}
 	
-	@DeleteMapping(value = "{restauranteId}")
+	@DeleteMapping(value = "/{restauranteId}")
 	@ResponseStatus(code = HttpStatus.ACCEPTED)
 	public ResponseEntity<?> remover(@PathVariable Long restauranteId){
 		try {

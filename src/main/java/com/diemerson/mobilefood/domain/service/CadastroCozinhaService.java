@@ -40,7 +40,7 @@ public class CadastroCozinhaService {
 	
 	public void remover(Long cozinhaId){
 		try {
-				cozinhaRepository.removerBD(cozinhaId);
+			cozinhaRepository.removerBD(cozinhaId);
 		}catch (EmptyResultDataAccessException e) {
 			throw new EntidadeNaoEncontradaException(
 					String.format("Cozinha não existe com o código %d", cozinhaId));

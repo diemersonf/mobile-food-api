@@ -28,7 +28,7 @@ public class EnderecoCadastrarMain {
 		Cidade cidade = new Cidade();
 		Estado estado = new Estado();
 		estado = estados.buscarPorSigla("SP");
-		cidade = cidades.buscarPorNome("Sao Jose do Rio Preto", estado);
+		cidade = cidades.buscarPorNomeEstado("Sao Jose do Rio Preto", estado);
 				
 		EnderecoId enderecoId = new EnderecoId();
 		enderecoId.setCidade(cidade);

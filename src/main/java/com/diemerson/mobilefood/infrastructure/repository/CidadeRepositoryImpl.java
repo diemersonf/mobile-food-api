@@ -24,11 +24,17 @@ public class CidadeRepositoryImpl implements CidadeRepository{
 	}
 	
 	@Override
-	public Cidade buscarPorNome(String nome, Estado sigla){
+	public Cidade buscarPorNomeEstado(String nome, Estado sigla){
 		return manager.createQuery("from Cidade where nome = :nome and estado = :sigla", Cidade.class)
 				.setParameter("nome", nome)
 				.setParameter("sigla", sigla)
-				.getSingleResult();	
+				.getSingleResult();
 	}
 
+	@Override
+	public Cidade buscarPorNome(String nome) {
+		return manager.createQuery("from Cidade where nome = :nome", Cidade.class)
+				.setParameter("nome", nome)
+				.getSingleResult();	
+	}
 }

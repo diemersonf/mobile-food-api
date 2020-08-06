@@ -65,7 +65,6 @@ public class RestauranteRepositoryImpl implements RestauranteRepository {
 		restaurante.setCozinhas(cozinhas);
 
 		return manager.merge(restaurante);
-
 	}
 
 	@Override

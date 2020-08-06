@@ -7,5 +7,6 @@ import com.diemerson.mobilefood.domain.model.Estado;
 
 public interface CidadeRepository {
 	List<Cidade> buscarTodas();
-	Cidade buscarPorNome(String nome, Estado sigla);
+	Cidade buscarPorNome(String nome);
+	Cidade buscarPorNomeEstado(String nome, Estado sigla);
 }
