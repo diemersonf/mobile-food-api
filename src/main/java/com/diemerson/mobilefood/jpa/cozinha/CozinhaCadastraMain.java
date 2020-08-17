@@ -25,8 +25,8 @@ public class CozinhaCadastraMain {
 //		System.out.printf("%d - %s\n", cozinha1.getId(), cozinha1.getNome());
 //		System.out.printf("%d - %s\n", cozinha2.getId(), cozinha2.getNome());
 
-		cozinha1 = cozinhas.adicionarBD(cozinha1);
-		cozinha2 = cozinhas.adicionarBD(cozinha2);
+		cozinha1 = cozinhas.save(cozinha1);
+		cozinha2 = cozinhas.save(cozinha2);
 	
 //		System.out.printf("%d - %s\n", cozinha1.getId(), cozinha1.getNome());
 //		System.out.printf("%d - %s\n", cozinha2.getId(), cozinha2.getNome());

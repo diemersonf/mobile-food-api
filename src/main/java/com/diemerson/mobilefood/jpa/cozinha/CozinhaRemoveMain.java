@@ -15,10 +15,10 @@ public class CozinhaRemoveMain {
 			
 		CozinhaRepository cozinhas = applicationContext.getBean(CozinhaRepository.class);
 
-		System.out.printf("Nome da Cozinha antes da remoção: %s \n\n", cozinhas.buscarPorId(3L).getNome());
+		System.out.printf("Nome da Cozinha antes da remoção: %s \n\n", cozinhas.findById(3L).get().getNome());
 
 		try {
-			cozinhas.removerBD(3L);
+			cozinhas.deleteById(3L);
 			System.out.println("Cozinha removida com sucesso!!!");
 		}catch (IllegalArgumentException e) {
 			System.out.println("Cozinha não foi removida. " + e);

@@ -18,7 +18,7 @@ public class CozinhaBuscaMain {
 
 		Cozinha cozinha = new Cozinha();
 		
-		cozinha = cozinhas.buscarPorId(4L);
+		cozinha = cozinhas.findById(4L).get();
 		
 		try {
 			System.out.println("Cozinha Encontrada: " + cozinha.getId() + " - " + cozinha.getNome());

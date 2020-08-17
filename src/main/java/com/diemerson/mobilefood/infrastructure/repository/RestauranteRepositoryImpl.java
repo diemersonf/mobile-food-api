@@ -47,18 +47,17 @@ public class RestauranteRepositoryImpl implements RestauranteRepository {
 	@Transactional
 	public Restaurante adicionarBD(Restaurante restaurante) {
 		List<Cozinha> cozinhas = new ArrayList<Cozinha>();
-		Cozinha cozinhaBd = new Cozinha();
+		Cozinha cozinhaBd;
 
 		if (restaurante.getCozinhas() == null) {
 			throw new EmptyResultDataAccessException("Nenhuma cozinha foi informada", 1);
 		}
 
-		for (Cozinha cozinha : restaurante.getCozinhas()) {
-			cozinhaBd = cozinhaRepository.buscarPorId(cozinha.getId());
-			if (cozinhaBd == null) {
-				throw new EntidadeNaoEncontradaException(
-						String.format("Não existe cadastro de cozinha com código %d.", cozinha.getId()));
-			}
+		for (Cozinha cozinha : restaurante.getCozinhas()) {	
+			cozinhaBd = cozinhaRepository.findById(cozinha.getId())
+					.orElseThrow(() -> new EntidadeNaoEncontradaException(
+						String.format("Não existe cadastro de cozinha com código %d.", cozinha.getId())));
+			
 			cozinhas.add(cozinhaBd);
 		}
 
@@ -90,11 +89,11 @@ public class RestauranteRepositoryImpl implements RestauranteRepository {
 			if (cozinha.getId() == null) {
 				throw new EmptyResultDataAccessException("Cozinha informada não pode ser nula. Verifique!", 1);
 			}
-			cozinhaBd = cozinhaRepository.buscarPorId(cozinha.getId());
-			if (cozinhaBd == null) {
-				throw new EntidadeNaoEncontradaException(
-						String.format("Não existe cadastro de cozinha com código %d.", cozinha.getId()));
-			}
+			
+			cozinhaBd = cozinhaRepository.findById(cozinha.getId())
+					.orElseThrow(() -> new EntidadeNaoEncontradaException(
+						String.format("Não existe cadastro de cozinha com código %d.", cozinha.getId())));
+			
 			cozinhas.add(cozinhaBd);
 		}
 		restauranteBd.setCozinhas(cozinhas);

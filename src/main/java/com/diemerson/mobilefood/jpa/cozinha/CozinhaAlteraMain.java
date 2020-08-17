@@ -17,14 +17,14 @@ public class CozinhaAlteraMain {
 		CozinhaRepository cozinhas = applicationContext.getBean(CozinhaRepository.class);
 		
 		Cozinha cozinha = new Cozinha();
-		cozinha = cozinhas.buscarPorId(2L);
+		cozinha = cozinhas.findById(2L).get();
 		
 		System.out.printf("Nome da Cozinha antes da alteração: %s", cozinha.getNome());
 		
 		cozinha.setNome("Chinesa");
-		cozinhas.adicionarBD(cozinha);
+		cozinhas.save(cozinha);
 
-		System.out.printf("Nome da Cozinha depois da alteração: %s", cozinhas.buscarPorId(2L).getNome());
+		System.out.printf("Nome da Cozinha depois da alteração: %s", cozinhas.findById(2L).get().getNome());
 
 	}
 }

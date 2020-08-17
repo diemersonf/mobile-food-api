@@ -2,6 +2,7 @@ package com.diemerson.mobilefood.domain.service;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -19,11 +20,11 @@ public class CadastroCozinhaService {
 	private CozinhaRepository cozinhaRepository;
 	
 	public Cozinha adicionar(Cozinha cozinha) {
-		return cozinhaRepository.adicionarBD(cozinha);
+		return cozinhaRepository.save(cozinha);
 	}
 	
 	public List<Cozinha> listarTodas(){
-		return cozinhaRepository.buscarTodas();
+		return cozinhaRepository.findAll();
 	}
 	
 	public Cozinha buscar(Long id){
@@ -32,18 +33,21 @@ public class CadastroCozinhaService {
 			throw new AtributoNuloException("Id da Cozinha não pode ser nulo.");
 		}
 		
-		Cozinha cozinha = cozinhaRepository.buscarPorId(id);
-		
-		if(cozinha != null) {
-			throw new EntidadeNaoEncontradaException(String.format("Cozinha com id %d não foi encontradas.", id));
-		} 
-		
-		return cozinhaRepository.buscarPorId(id);
+		Cozinha cozinha = cozinhaRepository.findById(id)
+				.orElseThrow(() -> new EntidadeNaoEncontradaException(
+						String.format("Cozinha com id %d não foi encontradas.", id)));
+
+		return cozinha;
 	}
 	
 	public Cozinha atualizar(Long id, Cozinha cozinha){	
 		try {
-			return cozinhaRepository.atualizarBD(id, cozinha);
+			Cozinha cozinhaAtual = cozinhaRepository.findById(id)
+					.orElseThrow(() -> new EntidadeNaoEncontradaException(
+							String.format("Cozinha com id %d não foi encontradas.", id)));
+
+			BeanUtils.copyProperties(cozinha, cozinhaAtual, "id");
+			return cozinhaRepository.save(cozinhaAtual);
 		} catch (EmptyResultDataAccessException e) {
 			throw new EntidadeNaoEncontradaException(
 					String.format("Cozinha não existe com o código %d", id));
@@ -52,7 +56,7 @@ public class CadastroCozinhaService {
 	
 	public void remover(Long cozinhaId){
 		try {
-			cozinhaRepository.removerBD(cozinhaId);
+			cozinhaRepository.deleteById(cozinhaId);
 		}catch (EmptyResultDataAccessException e) {
 			throw new EntidadeNaoEncontradaException(
 					String.format("Cozinha não existe com o código %d", cozinhaId));

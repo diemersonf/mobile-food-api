@@ -51,8 +51,6 @@ public class CozinhaController {
 		} catch (EntidadeNaoEncontradaException e) {
 			return ResponseEntity.notFound().build();
 		}
-
-		
 	}
 	
 	@PutMapping(value = "/{cozinhaId}")
